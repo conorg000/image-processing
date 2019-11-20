@@ -4,6 +4,14 @@ from matplotlib import image
 import matplotlib.pyplot as plt
 
 def otsu_thresh(intense_array):
+    """Converts greyscale array to binary image using Otsu thresholding
+
+    Args:
+        intense_array (2d numpy array): The greyscale image as an intensity array
+
+    Returns:
+        otsu (2d numpy array): The resulting image as a binary array
+    """
     # Get dimensions of array
     dims = intense_array.shape
     print('\nIntensity array:')
@@ -105,15 +113,16 @@ def otsu_thresh(intense_array):
                 otsu[row, col] = 255
     print('\nBinary array:')
     print(otsu)
-    # Save the array as an image
-    binary = Image.fromarray(otsu)
-    binary.save('otsu_result.jpg')
-    binary.show()
+    return otsu
 
 # Load greyscale image as intensity array
 source = input('Enter filename of greyscale jpg: ')
 image = (Image.open(source))
 new = np.asarray(image)
 # Apply otsu's technique
-# Result is saved as 'otsu_result.jpg'
-otsu_thresh(new)
+# Get binary array
+target = otsu_thresh(new)
+# Save the array as an image
+binary = Image.fromarray(target)
+binary.save('otsu_result.jpg')
+binary.show()
