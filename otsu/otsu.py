@@ -1,7 +1,5 @@
 from PIL import Image
 import numpy as np
-from matplotlib import image
-import matplotlib.pyplot as plt
 
 def otsu_thresh(intense_array):
     """Converts greyscale array to binary image using Otsu thresholding
@@ -116,7 +114,7 @@ def otsu_thresh(intense_array):
     return otsu
 
 # Load greyscale image as intensity array
-source = input('Enter filename of greyscale jpg: ')
+source = input('Enter filename of greyscale jpg (e.g. file.jpg): ')
 image = (Image.open(source))
 new = np.asarray(image)
 # Apply otsu's technique
